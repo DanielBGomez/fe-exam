@@ -1,3 +1,4 @@
+require('dotenv').config();
 const webpack = require('webpack');
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
@@ -28,11 +29,21 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'lib'),
   },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'lib'),
+    },
+    compress: true,
+    port: 3100,
+  },
   plugins: [
     new HTMLWebpackPlugin({
       template: path.join(__dirname, 'src', 'static/index.html'),
       filename: 'index.html',
     }),
-    new webpack.EnvironmentPlugin(['NODE_ENV']),
+    // fix "process is not defined" error:
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
   ],
 };
