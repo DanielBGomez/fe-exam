@@ -1,6 +1,13 @@
 // Modules
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { CssBaseline } from '@mui/material';
+
+// Containers
+import { App } from './containers/App';
+
+// Style
+import './static/global.css';
 
 // React setup
 const DOM_ELEMENT = document.getElementById('root');
@@ -9,6 +16,7 @@ const root = ReactDOM.createRoot(DOM_ELEMENT);
 
 root.render(
   <React.StrictMode>
-    <h1>React</h1>
+    <CssBaseline />
+    <App />
   </React.StrictMode>
 );
